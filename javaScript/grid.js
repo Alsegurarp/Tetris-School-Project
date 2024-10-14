@@ -20,7 +20,7 @@ export class Grid{
             }
         }
     }
-    drawSquare(x,y,side, color, borderColor){
+    drawSquare(x,y,side,color,borderColor){
         const bordeSize = side / 10;
 
         this.ctx.fillStyle = color;
@@ -29,10 +29,9 @@ export class Grid{
         this.ctx.strokeStyle = borderColor;
         this.ctx.lineWidth = bordeSize;
         this.ctx.strokeReact( x+bordeSize/2, y+bordeSize/2, side - bordeSize, side - bordeSize);
-
     } /* Metodo que indica el eje X, Y, lado, color y el color del border dentro de la figura */
     getCoordinates(col, row){
-        return {x: col * (this.cellSize+this.space), y:row * (this.cellSize+this.space)}
+        return {x: col * (this.cellSize+this.space), y: row * (this.cellSize+this.space)}
     }/*Nos dará las coordenadas en pixeles dentro de nuestra matriz y tablero */
     draw(){
         for(let r = 0; r < this.rows; r++){
