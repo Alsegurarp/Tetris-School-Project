@@ -1,7 +1,7 @@
 import { BoardTetris } from './boardTetris.js'
 
 
-const canvasTetris = document.getElementsById("canvas-tetris");
+const canvasTetris = document.getElementById("canvas-tetris");
 const rows = 20;
 const cols = 10;
 const cellSize = 26;

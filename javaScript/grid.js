@@ -28,7 +28,7 @@ export class Grid{
 
         this.ctx.strokeStyle = borderColor;
         this.ctx.lineWidth = bordeSize;
-        this.ctx.strokeReact( x+bordeSize/2, y+bordeSize/2, side - bordeSize, side - bordeSize);
+        this.ctx.strokeRect(x+bordeSize/2, y+bordeSize/2, side - bordeSize, side - bordeSize);
     } /* Metodo que indica el eje X, Y, lado, color y el color del border dentro de la figura */
     getCoordinates(col, row){
         return {x: col * (this.cellSize+this.space), y: row * (this.cellSize+this.space)}
