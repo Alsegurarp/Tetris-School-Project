@@ -1,4 +1,4 @@
-import { Grid } from '../javaScript/grid.js'
+import { Grid } from './grid.js'
 
 
 export class BoardTetris extends Grid{

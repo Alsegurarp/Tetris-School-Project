@@ -1,4 +1,4 @@
-import { BoardTetris } from '../boardTetris.js'
+import { BoardTetris } from './boardTetris.js'
 
 
 const canvasTetris = document.getElementsById("canvas-tetris");
