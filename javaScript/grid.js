@@ -49,7 +49,7 @@ export class Grid{
         });
         console.log(text);
     }
-
+/* printMatriz para que se pinte en la consola */
 }
 /* Contenedor padre de, aqui se debe aclarar el tamaño de cada una de las celdas, columnas, etc - tablero*/
 /* Space se refiere al espacio dentro del tablero*/
