@@ -1,4 +1,5 @@
 import { BoardTetris } from './boardTetris.js'
+import {Tetromino, TetrominoTypes} from '.tetromino.js'
 
 
 const canvasTetris = document.getElementById("canvas-tetris");
@@ -9,10 +10,14 @@ const space = 2;
 
 
 const boardTetris = new BoardTetris(canvasTetris, rows, cols, cellSize, space);
+const tetrominoType = tetrominoTypes.T;
+
+const tetromino = new Tetromino(canvasTetris, cellSize, tetrominoType.shapes, tetrominoType.initPosition, tetrominoType.id);
 
 function update(){
     
     boardTetris.draw();
+    tetromino.draw(boardTetris);
 
     requestAnimationFrame(update);
 

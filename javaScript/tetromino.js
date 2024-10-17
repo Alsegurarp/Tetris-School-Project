@@ -5,8 +5,6 @@ class Position{
     }
 }
 
-
-
 class Tetromino{
     constructor(canvas, cellSize, shapes, initPosition, id){
         this.canvas = canvas;
@@ -131,10 +129,76 @@ class Tetromino{
         this.position = new Position(this.initPosition.row, this.initPosition.column);
     }
 }
-//El como interectuan las figuras en el canva
 
-//Ahora a dibujar las figuras
+const TetrominoTypes = {
+    T: {
+        id: 1,
+        initPosition: new Position(0,1),
+        shapes: [
+            [new Position(0, 1),new Position(1,0),new Position(1,1),new Position(1,2)],
+            [new Position(0, 1),new Position(1,1),new Position(1,2),new Position(2,1)],
+            [new Position(1, 0),new Position(1,1),new Position(1,2),new Position(2,1)],
+            [new Position(0, 1),new Position(1,0),new Position(1,1),new Position(2,1)]
+        ]
+    },
+    O: {
+        id: 2,
+        initPosition: new Position(0, 4),
+        shapes: [
+            [new Position(0, 0),new Position(0,1),new Position(1,0),new Position(1,1)],
+        ]
+    },
+    I: {
+        id: 3,
+        initPosition: new Position(-1,3),
+        shapes: [
+            [new Position(1, 0),new Position(1,1),new Position(1,2),new Position(1,3)],
+            [new Position(0, 2),new Position(1,2),new Position(2,2),new Position(3,2)],
+            [new Position(2, 0),new Position(2,1),new Position(2,2),new Position(2,3)],
+            [new Position(0, 1),new Position(1,1),new Position(2,1),new Position(3,1)]
+        ]
+    },
+    S: {
+        id: 4,
+        initPosition: new Position(0,3),
+        shapes: [
+            [new Position(0, 1),new Position(0,2),new Position(1,0),new Position(1,1)],
+            [new Position(0, 1),new Position(1,1),new Position(1,2),new Position(2,2)],
+            [new Position(1, 1),new Position(1,2),new Position(2,0),new Position(2,1)],
+            [new Position(0, 0),new Position(1,0),new Position(1,1),new Position(2,1)]
+        ]
+    },
+    Z: {
+        id: 5,
+        initPosition: new Position(0,3),
+        shapes: [
+            [new Position(0, 0),new Position(0,1),new Position(1,1),new Position(1,2)],
+            [new Position(0, 2),new Position(1,1),new Position(1,2),new Position(2,1)],
+            [new Position(1, 0),new Position(1,1),new Position(2,1),new Position(2,2)],
+            [new Position(0, 1),new Position(1,0),new Position(1,1),new Position(2,0)]
+        ]
+    },
+    J: {
+        id: 6,
+        initPosition: new Position(0,3),
+        shapes: [
+            [new Position(0, 0),new Position(1,0),new Position(1,1),new Position(1,2)],
+            [new Position(0, 1),new Position(0,2),new Position(1,1),new Position(2,1)],
+            [new Position(1, 0),new Position(1,1),new Position(1,2),new Position(2,2)],
+            [new Position(0, 1),new Position(1,1),new Position(2,0),new Position(2,1)]
+        ]
+    },
+    L: {
+        id: 7,
+        initPosition: new Position(0,3),
+        shapes: [
+            [new Position(0, 2),new Position(1,0),new Position(1,1),new Position(1,2)],
+            [new Position(0, 1),new Position(1,1),new Position(2,1),new Position(2,2)],
+            [new Position(1, 0),new Position(1,1),new Position(1,2),new Position(2,0)],
+            [new Position(0, 0),new Position(0,1),new Position(1,1),new Position(2,1)]
+        ]
+    }
 
-//Despues la designacion de colores de cada una de las figuras
+};
 
-//creacion de los te trominos
+export{Position, Tetromino, TetrominoTypes}
