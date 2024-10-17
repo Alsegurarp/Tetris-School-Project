@@ -6,7 +6,7 @@ class Position{
 }
 
 class Tetromino{
-    constructor(canvas, cellSize, shapes, initPosition, id){
+    constructor(canvas, cellSize, shapes = [], initPosition = new Position(), id=1){
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.cellSize = cellSize;
@@ -15,7 +15,6 @@ class Tetromino{
         this.initPosition = initPosition;
         this.position = new Position(this.initPosition.row, this.initPosition.column);
         this.id = id;
-        this.color = color;
     }
     drawSquare(x,y,size,color){
         this.ctx.fillStyle = color;
@@ -100,8 +99,8 @@ class Tetromino{
         return this.shapes[this.rotation];
     }
     draw(grid){
-        const shapes = this.currentShape();
-        for(let i = 0; i<shapes.length; i++){
+        const shape = this.currentShape();
+        for(let i = 0; i<shape.length; i++){
             const position = grid.getCoordinates(
                 this.position.column + shape[i].column,
                 this.position.row + shape[i].row,
@@ -201,4 +200,40 @@ const TetrominoTypes = {
 
 };
 
-export{Position, Tetromino, TetrominoTypes}
+class TetrominoBag{
+    constructor(canvas, cellSize){
+        this.canvas = canvas;
+        this.cellSize = cellSize;
+        this.bag = [];
+    }
+    fillBag(){
+        const tetrominosTypes = [
+            TetrominoTypes.T,
+            TetrominoTypes.O,
+            TetrominoTypes.I,
+            TetrominoTypes.S,
+            TetrominoTypes.Z,
+            TetrominoTypes.J,
+            TetrominoTypes.L,
+        ]
+        this.bag.length = 0;
+        tetrominosTypes.forEach((type) => {
+            this.bag.push(new Tetromino(
+                this.canvas, this.cellSize, type.shapes, type.initPosition
+            ));
+        });
+        for(let i = this.bag.length - 1; 1>0; 1--){
+            let j = Math.floor(Math.random() * (i+1));
+            [this.bag[i], this.bag[j]] = [this.bag[j], this.bag[i]]
+        }
+    }
+    nextTetromino(){
+        if(this.bag.length === 0){
+                this.fillBag();
+        }
+        return this.bag.pop();
+    }
+    
+}
+
+export{Position, Tetromino, TetrominoTypes, TetrominoBag}

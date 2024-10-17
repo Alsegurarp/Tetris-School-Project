@@ -1,5 +1,5 @@
 import { BoardTetris } from './boardTetris.js'
-import {Tetromino, TetrominoTypes} from './tetromino.js'
+import { Tetromino, TetrominoTypes } from './tetromino.js'
 
 
 const canvasTetris = document.getElementById("canvas-tetris");
@@ -20,3 +20,4 @@ function update(){
     requestAnimationFrame(update);
 }
 update();
+
