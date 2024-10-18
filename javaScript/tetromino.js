@@ -222,7 +222,7 @@ class TetrominoBag{
                 this.canvas, this.cellSize, type.shapes, type.initPosition
             ));
         });
-        for(let i = this.bag.length - 1; 1>0; 1--){
+        for(let i = this.bag.length - 1; i > 0; i--){
             let j = Math.floor(Math.random() * (i+1));
             [this.bag[i], this.bag[j]] = [this.bag[j], this.bag[i]]
         }

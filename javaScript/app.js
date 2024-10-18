@@ -1,6 +1,4 @@
-import { BoardTetris } from './boardTetris.js'
-import { Tetromino, TetrominoTypes } from './tetromino.js'
-
+import { Game } from "./game";
 
 const canvasTetris = document.getElementById("canvas-tetris");
 const rows = 20;
@@ -8,15 +6,10 @@ const cols = 10;
 const cellSize = 26;
 const space = 2;
 
-
-const boardTetris = new BoardTetris(canvasTetris, rows, cols, cellSize, space);
-
-const tetrominoType = TetrominoTypes.T;
-const tetromino = new Tetromino(canvasTetris, cellSize, tetrominoType.shapes, tetrominoType.initPosition, tetrominoType.id);
+const game = new Game(canvasTetris, rows, cols, cellSize, space);
 
 function update(){
-    boardTetris.draw();
-    tetromino.draw(boardTetris);
+    game.update();
     requestAnimationFrame(update);
 }
 update();
