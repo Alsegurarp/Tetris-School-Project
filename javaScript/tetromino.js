@@ -1,3 +1,5 @@
+export{Position, Tetromino, TetrominoTypes, TetrominoBag}
+
 class Position{
     constructor(row,  column){
         this.row = row;
@@ -233,7 +235,4 @@ class TetrominoBag{
         }
         return this.bag.pop();
     }
-    
 }
-
-export{Position, Tetromino, TetrominoTypes, TetrominoBag}
