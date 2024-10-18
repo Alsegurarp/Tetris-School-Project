@@ -1,7 +1,7 @@
-export{Position, Tetromino, TetrominoTypes, TetrominoBag}
+
 
 class Position{
-    constructor(row,  column){
+    constructor(row, column){
         this.row = row;
         this.column = column;
     }
@@ -202,7 +202,7 @@ const TetrominoTypes = {
 
 };
 
-class TetrominoBag{
+class TetrominosBag{
     constructor(canvas, cellSize){
         this.canvas = canvas;
         this.cellSize = cellSize;
@@ -218,10 +218,11 @@ class TetrominoBag{
             TetrominoTypes.J,
             TetrominoTypes.L,
         ]
+    
         this.bag.length = 0;
         tetrominosTypes.forEach((type) => {
             this.bag.push(new Tetromino(
-                this.canvas, this.cellSize, type.shapes, type.initPosition
+                this.canvas, this.cellSize, type.shapes, type.initPosition, type.id
             ));
         });
         for(let i = this.bag.length - 1; i > 0; i--){
@@ -236,3 +237,4 @@ class TetrominoBag{
         return this.bag.pop();
     }
 }
+export{Position, Tetromino, TetrominoTypes, TetrominosBag}

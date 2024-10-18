@@ -1,11 +1,11 @@
-import { TetrominoBag } from './tetromino.js';
-import { BoardTetris } from './boardTetris.js'
+import { TetrominosBag } from './tetromino.js';
+import { BoardTetris } from './boardTetris.js';
 
 export class Game{
     constructor(canvas, rows, cols, cellSize, space){
-        this.boardTetris = new  BoardTetris(canvas, rows, cols, cellSize, space);
-        this.tetrominoBag = new TetrominoBag(canvas, cellSize);
-        this.currentTetromino = this.tetrominoBag.nextTetromino();
+        this.boardTetris = new BoardTetris(canvas, rows, cols, cellSize, space);
+        this.tetrominosBag = new TetrominosBag(canvas, cellSize);
+        this.currentTetromino = this.tetrominosBag.nextTetromino();
         this.keyboard();
         this.keys = {up:false, down:false};
 
@@ -23,10 +23,9 @@ export class Game{
         if(deltaTime2 >= 50){
         this.boardTetris.draw();
         this.currentTetromino.draw(this.boardTetris);
-            if(this.keys.down){
-                this.moveTetrominoDown();
-            }
-
+        if(this.keys.down){
+            this.moveTetrominoDown();
+        }
         this.lastTime2 = currentTime;
         }
     }
@@ -34,6 +33,7 @@ export class Game{
         this.currentTetromino.move(1,0);
         if(this.blockedTetromino()){
             this.currentTetromino.move(-1,0);
+            this.placeTetromino();
     }}
     blockedTetromino(){
         const tetrominoPositions = this.currentTetromino.currentPositions();
@@ -81,6 +81,22 @@ export class Game{
         }
     }
     //Creacion de los eventos para escuahr al tablero de computadora - Ahora se hara con flecha pero debo de probar como hacerlo con pantalla de celular
+
+    placeTetromino(){
+        const tetrominoPositions = this.currentTetromino.currentPositions();
+        for(let i = 0; i<tetrominoPositions.length; i++){
+            this.boardTetris.matriz
+                [tetrominoPositions[i].row]
+                [tetrominoPositions[i].column] = this.currentTetromino.id;
+        }
+        this.boardTetris.clearFullRows();
+        if(this.boardTetris.gameOver()){
+            return true;
+        }
+        else{
+            this.currentTetromino = this.tetrominosBag.nextTetromino();
+        }
+    }
     keyboard(){
         window.addEventListener("keydown",(evt)=>{
             if(evt.key === "ArrowLeft"){
