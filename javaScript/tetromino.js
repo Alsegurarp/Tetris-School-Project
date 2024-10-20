@@ -18,7 +18,7 @@ class Tetromino{
         this.position = new Position(this.initPosition.row, this.initPosition.column);
         this.id = id;
     }
-    drawSquare(x,y,size,color){
+    drawSquare(x,y,size,color,border){
         this.ctx.fillStyle = color;
         this.ctx.fillRect(x,y, size, size);
     }
@@ -34,24 +34,24 @@ class Tetromino{
     getColorPalette(id){
         const palette = {
             1: {
-                rightTriangle: "#B5193B",
-                leftTriangle: "#FFFFFF",
-                square: "#EE1B2E"
-            },
-            2: {
-                rightTriangle: "#FE5E02",
-                leftTriangle: "#FFFFFF",
-                square: "#FFDB01"
-            },
-            3: {
                 rightTriangle: "#FE8601",
                 leftTriangle: "#FFFFFF",
                 square: "#FFDB01"
             },
-            4: {
+            2: {
+                rightTriangle: "#FE5E02",
+                leftTriangle: "#FFFFFF",
+                square: "#FE8602"
+            },
+            3: {
                 rightTriangle: "#B5193B",
                 leftTriangle: "#FFFFFF",
                 square: "#EE1B2E"
+            },
+            4: {
+                rightTriangle: "#22974C",
+                leftTriangle: "#FFFFFF",
+                square: "#24DC4F"
             },
             5: {
                 rightTriangle : "#49BDFF",
@@ -74,28 +74,28 @@ class Tetromino{
     }
     drawBlock(x,y,id){
         const margin = this.cellSize / 8;
-       const palette = this.getColorPalette(id);
-       
-       this.drawTriangle(
+        const palette = this.getColorPalette(id);
+    
+    this.drawTriangle(
         x,y,
         x+this.cellSize,y,
         x,y+this.cellSize,
         palette.leftTriangle
-       );
+    );
 
-       this.drawTriangle(
+    this.drawTriangle(
         x+this.cellSize,y,
         x+this.cellSize, y+this.cellSize,
         x, y+this.cellSize,
         palette.rightTriangle
-       );
+    );
 
-       this.drawSquare(
+    this.drawSquare(
         x+margin,
         y+margin,
         this.cellSize - (margin*2),
         palette.square
-       );
+    );
     }
     currentShape(){
         return this.shapes[this.rotation];
@@ -134,7 +134,7 @@ class Tetromino{
 const TetrominoTypes = {
     T: {
         id: 1,
-        initPosition: new Position(0,1),
+        initPosition: new Position(0,3),
         shapes: [
             [new Position(0, 1),new Position(1,0),new Position(1,1),new Position(1,2)],
             [new Position(0, 1),new Position(1,1),new Position(1,2),new Position(2,1)],
@@ -199,7 +199,6 @@ const TetrominoTypes = {
             [new Position(0, 0),new Position(0,1),new Position(1,1),new Position(2,1)]
         ]
     }
-
 };
 
 class TetrominosBag{
@@ -207,6 +206,13 @@ class TetrominosBag{
         this.canvas = canvas;
         this.cellSize = cellSize;
         this.bag = [];
+        this.threeNextTetromino = [];
+        this.init();
+    }
+    init(){
+        for(let i = 0; i<3; i++){
+            this.threeNextTetromino.push(this.getNextTetromino());
+        }
     }
     fillBag(){
         const tetrominosTypes = [
@@ -230,11 +236,24 @@ class TetrominosBag{
             [this.bag[i], this.bag[j]] = [this.bag[j], this.bag[i]]
         }
     }
-    nextTetromino(){
+    getNextTetromino(){
         if(this.bag.length === 0){
                 this.fillBag();
         }
         return this.bag.pop();
+    }
+    nextTetromino(){
+        const next = this.threeNextTetromino.shift();
+        this.threeNextTetromino.push(this.getNextTetromino());
+        return next;
+    }
+    getThreeNextTetromino(){
+        return this.threeNextTetromino;
+    }
+    reset(){
+        this.bag = [];
+        this.threeNextTetromino = [];
+        this.init();
     }
 }
 export{Position, Tetromino, TetrominoTypes, TetrominosBag}

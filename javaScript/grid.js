@@ -24,8 +24,8 @@ export class Grid{
             }
         }
     }
-    drawSquare(x,y,side,color,borderColor){
-        const bordeSize = side / 10;
+    drawSquare(x,y,side,color,borderColor, border){
+        const bordeSize = side / border;
 
         this.ctx.fillStyle = color;
         this.ctx.fillRect(x,y,side,side);
@@ -41,16 +41,38 @@ export class Grid{
         for(let r = 0; r < this.rows; r++){
             for(let c = 0; c < this.cols; c++){
                 const position = this.getCoordinates(c,r);
+                
                 if(this.matriz[r][c] !== 0){
                     this.block.drawBlock(position.x, position.y,this.matriz[r][c]);
                 }
-                else {
-                    this.drawSquare(position.x, position.y, this.cellSize, "000", "#303030");
-                }
+                else{
+                    this.drawSquare(position.x, position.y, this.cellSize, "#000000", "#303030", 10);
+                } 
             }
         }
         this.printMatriz();
     } /* Metodo para dibujar las filas*/
+    draw2(){
+        this.drawBackground();
+        for(let r = 0; r < this.rows; r++){
+            for(let c = 0; c < this.cols; c++){
+                const position = this.getCoordinates(c,r);
+                if(this.matriz[r][c] !== 0){
+                    if(this.matriz[c][r] === 2){
+                        this.block.drawBlock(position.x + this.cellSize, position.y,this.matriz[r][c]);
+                    } else if(this.matriz[c][r] === 3){
+                        this.block.drawBlock(position.x, position.y,this.matriz[r][c]);
+                    } else{
+                        this.block.drawBlock(position.x + this.cellSize/2, position.y,this.matriz[r][c]);
+                    }
+                }
+            }
+        }}
+        drawBackground(){
+            this.ctx.fillStyle = "black";
+            this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
+        }
+
     printMatriz(){
         let text = "";
         this.matriz.forEach((row) => {
