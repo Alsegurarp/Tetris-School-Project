@@ -13,7 +13,7 @@ export class Game{
         this.lastTime2 = 0;
 
         this.next = new BoardNext(canvasNext,8, 4, cellSize, space, this.tetrominosBag.getThreeNextTetromino());
-        this.hold = new BoardHold(canvasHold, 2, 4, cellSize, space);
+        this.hold = new BoardHold(canvasHold, 3, 4, cellSize, space);
         this.canHold = true;
 
         this.core = 0;
