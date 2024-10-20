@@ -30,6 +30,7 @@ btnMenu.addEventListener("click", () => {
     setTimeout(() => {
     menu.style.display = "none";
     game.reset();
+    score.innerHTML = game.score;
     }, 200)
     
 })

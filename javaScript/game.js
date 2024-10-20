@@ -12,11 +12,11 @@ export class Game{
         this.lastTime = 0;
         this.lastTime2 = 0;
 
-        this.next = new BoardNext(canvasNext,8, 5, cellSize, space, this.tetrominosBag.getThreeNextTetromino());
-        this.hold = new BoardHold(canvasHold, 3, 4, cellSize, space);
+        this.next = new BoardNext(canvasNext,9, 5, cellSize, space, this.tetrominosBag.getThreeNextTetromino());
+        this.hold = new BoardHold(canvasHold, 4, 5, cellSize, space);
         this.canHold = true;
 
-        this.core = 0;
+        this.score = 0;
         this.gameOver = false;
     }
     update(){
@@ -142,7 +142,7 @@ export class Game{
             let position = this.boardTetris.getCoordinates(
                 tetrominoPositions[i].column,
                 tetrominoPositions[i].row + dropDistance
-            );
+            )
             this.boardTetris.drawSquare(position.x, position.y, this.boardTetris.cellSize, "000000", "white", 20);
         }
     }
