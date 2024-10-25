@@ -4,14 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
-    <script type="module" src="./javaScript/app.js"></script>
+    <script defer src="javaScript/tetromino.js"></script>
+    <script defer src="javaScript/grid.js"></script>
+    <script defer src="javaScript/boardTetris.js"></script>
+    <script defer src="javaScript/game.js"></script>
+    <script defer src="javaScript/app.js"></script>
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
-    <div class="canvas_containter">
-        <canvas id="canvas-tetris"></canvas>
+    <!--
+    Hacer una presentacion al juego con instrucciones - 
+    y hacer los pad en media querie que escuchen "click" en celular - Agrega todas las funciones
+    -->
+    
+    <div class="game">
+        <div class="canvas-containter">
+            <span>HOLD</span>
+            <div class="canvas">
+                <canvas id="canvas-hold"></canvas>
+            </div>
+        </div>
+        <div class="canvas-containter">
+            <span class="score-container">Score: <span id="score">0</span></span>
+            <div class="canvas">
+                <canvas id="canvas-tetris"></canvas>
+            </div>
+            
+        </div>
+        <div class="canvas-containter">
+            <span>NEXT</span>
+            <div class="canvas">
+                <canvas id="canvas-next"></canvas>
+            </div>
+            
+        </div>
+        <div class="menu" id="menu">
+            <span>TETRIS</span>
+            <p><span class="instrucciones">Press "C"</span> to hold a tetromino</p>
+            <p>And then <span class="instrucciones">Press "C"</span> again to use it</p>
+            <button id="btn-start">START</button>
+        </div>
     </div>
+    
 
 </body>
 </html>

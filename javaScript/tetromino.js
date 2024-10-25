@@ -1,5 +1,4 @@
-
-
+//Clas Position - Donde está en el plano cartesiano 
 class Position{
     constructor(row, column){
         this.row = row;
@@ -7,6 +6,9 @@ class Position{
     }
 }
 
+//this en un objeto - Se refiere al objeto que es dueño del metodo
+//El constructor solamente está declarando el tipo de data que cada uno de los elementos representa - shapes contendrá ARRAYS, etc
+//Class Tetromino - explicitamente es el "etiquetar y bajo qué cualidades" cada una de las piezas con las que se usa el juego
 class Tetromino{
     constructor(canvas, cellSize, shapes = [], initPosition = new Position(), id=1){
         this.canvas = canvas;
@@ -72,6 +74,8 @@ class Tetromino{
         }
         return palette[id] || palette[1]
     }
+    //drawTriangle, drawSquare y palette = construir el bloque - En caso de que haya un problema en el color - returna la pieza con el id correcto, sino, manda el bloque id 1
+
     drawBlock(x,y,id){
         const margin = this.cellSize / 8;
         const palette = this.getColorPalette(id);
@@ -100,6 +104,7 @@ class Tetromino{
     currentShape(){
         return this.shapes[this.rotation];
     }
+    
     draw(grid){
         const shape = this.currentShape();
         for(let i = 0; i<shape.length; i++){
@@ -110,6 +115,8 @@ class Tetromino{
             this.drawBlock(position.x,position.y, this.id);
         }
     }
+    
+
     currentPositions(){
         const positions = [];
         const shape = this.currentShape();
@@ -121,6 +128,8 @@ class Tetromino{
         }
         return positions;
     }
+
+
     move(row, column){
         this.position.row += row;
         this.position.column += column;
@@ -130,6 +139,7 @@ class Tetromino{
         this.position = new Position(this.initPosition.row, this.initPosition.column);
     }
 }
+//Declaracion de las figuras, con cada una de sus posibles rotaciones
 
 const TetrominoTypes = {
     T: {
@@ -200,7 +210,11 @@ const TetrominoTypes = {
         ]
     }
 };
-
+//Para que una figura no se repita al hacer Math.random - Todas se ponen en un Array, despues se van usando en aleatorio 1x1
+//Hasta que no se terminen de usar, la 'bolsita' no se actualiza - Se termina de usar y se rellena
+//Aqui está tambien parte del bloqueHold, basicamente si lo usas, tomará el bloque que estás usando "[0]", lo guarda en Hold
+//Y el bloque siguiente "[1]" "NextTetromino() "lo manda para que se use
+//getNextThreeTetromino() - Metodo para que muestre los siguientes 3 bloques de la "bolsa"
 class TetrominosBag{
     constructor(canvas, cellSize){
         this.canvas = canvas;
@@ -256,4 +270,3 @@ class TetrominosBag{
         this.init();
     }
 }
-export{Position, Tetromino, TetrominoTypes, TetrominosBag}

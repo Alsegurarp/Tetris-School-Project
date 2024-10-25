@@ -1,7 +1,3 @@
-import { BoardTetris } from "./boardTetris.js";
-import { Game } from "./game.js";
-import { TetrominoTypes } from "./tetromino.js";
-
 const canvasTetris = document.getElementById("canvas-tetris");
 const canvasNext = document.getElementById("canvas-next");
 const canvasHold = document.getElementById("canvas-hold");

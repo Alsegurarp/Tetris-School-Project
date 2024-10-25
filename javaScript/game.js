@@ -1,7 +1,7 @@
-import { TetrominosBag } from './tetromino.js';
-import { BoardTetris, BoardNext, BoardHold } from './boardTetris.js';
-
-export class Game{
+//Declaracion del juego, como se conecta - Las teclas y todo 
+//El porqué se colocan keys en 'false' es para que al ser activadas no continuen con la accion que deberian hacer <Pero solamente una vez>
+//Pude haber hecho un toggle, pero tambien está ésta opción.
+class Game{
     constructor(canvas, rows, cols, cellSize, space, canvasNext, canvasHold){
         this.boardTetris = new BoardTetris(canvas, rows, cols, cellSize, space);
         this.tetrominosBag = new TetrominosBag(canvas, cellSize);
@@ -19,6 +19,7 @@ export class Game{
         this.score = 0;
         this.gameOver = false;
     }
+
     update(){
         let currentTime = Date.now();
         let deltaTime = currentTime - this.lastTime;
@@ -43,6 +44,7 @@ export class Game{
         this.lastTime2 = currentTime;
         }
     }
+
     autoMoveTetrominoDown(){
         this.currentTetromino.move(1,0);
         if(this.blockedTetromino()){
@@ -94,8 +96,10 @@ export class Game{
             this.rotationTetrominoCW();
         }
     }
-    //Creacion de los eventos para escuahr al tablero de computadora - Ahora se hara con flecha pero debo de probar como hacerlo con pantalla de celular
 
+//Creacion de los eventos para escuchar al tablero de computadora - Ahora se hara con flecha pero debo de probar como hacerlo con pantalla de celular
+//Posicionar el tetromino en el tablero 
+//Puntaje que se da cuando ganas - Puntaje que te da
     placeTetromino(){
         const tetrominoPositions = this.currentTetromino.currentPositions();
         for(let i = 0; i<tetrominoPositions.length; i++){
@@ -106,6 +110,8 @@ export class Game{
         
         this.score += this.boardTetris.clearFullRows() *5;
         
+        //si hay gameOver - Entonces true, tarda 0.5seg en salir la alerta
+
         if(this.boardTetris.gameOver()){
             setTimeout(() => {
                 this.gameOver = true;
@@ -120,6 +126,8 @@ export class Game{
             this.canHold = true;
         }
     }
+    //Solamente pasa la pieza que estas usando, le suma los espacios que le falta hasta que se encuentre un espacio ocupado y ahí muestra la pieza
+    //Si algun espacio de la matriz está ocupado, toma el que está por encima
     dropDistance(position){
         let distance = 0;
         while(this.boardTetris.isEmpty(position.row + distance + 1, position.column)){
@@ -135,6 +143,7 @@ export class Game{
         }
         return drop;
     }
+    //Tetromino dónde caerá la pieza 
     drawTetrominoGhost(){
         const dropDistance = this.tetrominoDropDistance();
         const tetrominoPositions = this.currentTetromino.currentPositions();
@@ -146,10 +155,16 @@ export class Game{
             this.boardTetris.drawSquare(position.x, position.y, this.boardTetris.cellSize, "000000", "white", 20);
         }
     }
+    //Al dar click, en inmediato pasa a la columna que se encuentre con el espacio disponible
+    //Todo espacio en la matriz(plano) que sea diferente a 0, de no ser el caso, entonces irá hasta el fondo de la matriz
     dropBlock(){
         this.currentTetromino.move(this.tetrominoDropDistance(), 0);
         this.placeTetromino();
     }
+    //Compara si hay un tetromino en Hold, pero antes de eso declara que es nulo, por lo que no contiene nada al inicio
+    //Despues instrucciones del como tomará el tetromino en turno y usa el metodo nextTetromino() - Asi tiene que usar 
+    //Despues al usar esto en una ocasion, returna, por lo que ya no puedes usarla hasta que posiciones el tetromino que estás
+    //Después de posicionarlo en la matriz puedes usar hold de nuevo
     holdTetromino(){
         if(!this.canHold) return;
         if(this.hold.tetromino === null){
