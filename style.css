@@ -22,7 +22,7 @@ body{
 .game{
     position: relative;
     display: flex;
-    gap: 2rem;
+    gap: 0.5rem;
     align-items: flex-start;
 }
 .canvas-container{
@@ -39,7 +39,7 @@ body{
     padding: 12px 15px;
     border-radius: 8px;
 }
-.canvas-containter span{
+.canvas-container span{
     color: white;
     font-size: 25px;
 }
@@ -58,7 +58,7 @@ body{
     transform: translate(-50%, -50%);
     background-color: black;
     border: 5px solid white;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 15px;
     padding: 15px 30px;
@@ -76,4 +76,52 @@ div.menu p{
 div.menu span.instrucciones{
     color:red;
     font-size: 12px;
+}
+
+section div.canvas-container:nth-child(2){
+    margin-top: 10px;
+}
+
+
+
+/*Falta agregar los media queries - ademas que en celular este posicionadas los divs uno sobre otro
+
+
+    
+}
+
+710 el primero */
+
+@media (max-width: 610px){
+    div.game{
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+    }
+    section.hold_next_mobile {
+        display: inline-flex;
+    align-items: baseline;
+    align-self: center;
+    }
+    canvas#canvas-hold{
+        height: 13vh;
+        width: 80px;
+        align-self: start;
+    }
+    section div.canvas-container:nth-child(2){
+        margin-top: 0;
+        align-self: start;
+    }
+    canvas#canvas-next{
+        height: 13vh;
+        width: 80px;
+    }
+    div.canvas-container{
+        align-self: center;
+        align-items: center;
+        align-self: center;
+    }
+    canvas#canvas-tetris{
+        height: 50vh;
+    }
 }

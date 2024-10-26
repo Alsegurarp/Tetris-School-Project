@@ -27,8 +27,9 @@ btnMenu.addEventListener("click", () => {
     menu.style.display = "none";
     game.reset();
     score.innerHTML = game.score;
-    }, 200)
-    
+    }, 100)
 })
-update();
 
+
+
+update();

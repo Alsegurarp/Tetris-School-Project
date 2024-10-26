@@ -219,8 +219,8 @@ class Game{
                 this.keys.up = false;
             }
         })
-        window.addEventListener("click", () => {
-            if(!this.gameOver){
+        window.addEventListener('keydown', () => {
+            if(event.code === 'Space' && !this.gameOver){
                 this.dropBlock();
             }
             

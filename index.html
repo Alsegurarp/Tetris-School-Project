@@ -19,26 +19,43 @@
     -->
     
     <div class="game">
-        <div class="canvas-containter">
-            <span>HOLD</span>
-            <div class="canvas">
-                <canvas id="canvas-hold"></canvas>
+        <section class="hold_next_mobile">
+            <div class="canvas-container">
+                <span>HOLD</span>
+                <div class="canvas">
+                    <canvas id="canvas-hold"></canvas>
+                </div>
             </div>
-        </div>
-        <div class="canvas-containter">
+            <!-- Solo estará cuando cuando el mediaQuery sea menor de 740px - El container de abajo será invisible al estar -741px-->
+            <div class="canvas-container">
+                <span>NEXT</span>
+                <div class="canvas">
+                    <canvas id="canvas-next" ></canvas>
+                </div>
+            </div> 
+        </section>
+        
+        
+
+        <div class="canvas-container">
             <span class="score-container">Score: <span id="score">0</span></span>
             <div class="canvas">
                 <canvas id="canvas-tetris"></canvas>
             </div>
             
         </div>
-        <div class="canvas-containter">
+        <!--
+        Este debe de ser el conteiner visible solo para mayor de 741px - 
+        Despues cuando esté menos de 740px debe hacerse un div con ARRIBA, ABAJO, DERECHA, IZQUIERDA, BOTON "HOLD" Y "DROP"
+       
+        <div class="canvas-container">
             <span>NEXT</span>
             <div class="canvas">
                 <canvas id="canvas-next"></canvas>
             </div>
-            
         </div>
+         -->
+
         <div class="menu" id="menu">
             <span>TETRIS</span>
             <p><span class="instrucciones">Press "C"</span> to hold a tetromino</p>
