@@ -60,6 +60,8 @@ class Game{
         }
         return false;
         }
+
+        //Todo en la matriz se mueve en el eje de columnas.
     moveTetrominoLeft(){
         this.currentTetromino.move(0, -1);
         if(this.blockedTetromino()){
@@ -78,6 +80,7 @@ class Game{
             this.currentTetromino.move(-1,0);
         }
     }
+    //Razon por la cual hay diferentes estados de tetrominos
     rotationTetrominoCW(){
         this.currentTetromino.rotation++;
         if(this.currentTetromino.rotation > this.currentTetromino.shapes.length-1){
@@ -110,12 +113,12 @@ class Game{
         
         this.score += this.boardTetris.clearFullRows() *5;
         
-        //si hay gameOver - Entonces true, tarda 0.5seg en salir la alerta
+        //si hay gameOver - Entonces true, tarda 0.2seg en salir la alerta
 
         if(this.boardTetris.gameOver()){
             setTimeout(() => {
                 this.gameOver = true;
-            }, 500);
+            }, 200);
             
             return true;
         }
@@ -223,7 +226,30 @@ class Game{
             if(event.code === 'Space' && !this.gameOver){
                 this.dropBlock();
             }
-            
+        });
+
+        buttonUp.addEventListener("click", () => {
+                this.rotationTetrominoCW();
+                this.keys.up = true;
+        });
+        buttonDown.addEventListener("click", () => {
+                this.keys.up = true;
+                this.moveTetrominoDown();
+                this.keys.up = false;
+        });
+        buttonLeft.addEventListener("click", () => {
+                this.moveTetrominoLeft();
+        });
+        buttonRight.addEventListener("click", () => {
+                this.moveTetrominoRight();
+        });
+        buttonDrop.addEventListener("click", () => {
+            if(!this.gameOver){
+                this.dropBlock();
+            }
+        });
+        buttonHold.addEventListener("click", () => {
+            this.holdTetromino();
         });
     }
 }

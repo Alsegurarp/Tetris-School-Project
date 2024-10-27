@@ -83,15 +83,6 @@ section div.canvas-container:nth-child(2){
 }
 
 
-
-/*Falta agregar los media queries - ademas que en celular este posicionadas los divs uno sobre otro
-
-
-    
-}
-
-710 el primero */
-
 @media (max-width: 610px){
     div.game{
         display: flex;
@@ -125,3 +116,64 @@ section div.canvas-container:nth-child(2){
         height: 50vh;
     }
 }
+
+/* Esto debe de ser algo solo para dispositivos menores de 900px de ancho*/
+
+
+
+section.control{
+    display: flex;
+    align-items: center;
+    width: calc(100%);
+    border-radius: 25px;
+    height: 100px;
+  }
+  div.controlador-nes{
+    width: 80px;
+    height: 40px;
+    background-color: black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  div.botones{
+    background-color: #C32F2F;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+  }
+
+div.control_movimiento{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    align-items: center;
+    height: 100px;
+}
+
+div.controlador-nes:nth-child(1){
+    position: relative;
+    right: 18px;
+    top: 18px;
+    transform: rotate(135deg);
+
+}
+div.controlador-nes:nth-child(2){
+    position: relative;
+    left: 10px;
+    top: 5px;
+    transform: rotate(315deg);
+
+}
+#buttonDrop, #buttonHold{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+div.controlador-nes div span.botonesMobile{
+    font-size: 14px;
+}
+

@@ -13,10 +13,6 @@
     
 </head>
 <body>
-    <!--
-    Hacer una presentacion al juego con instrucciones - 
-    y hacer los pad en media querie que escuchen "click" en celular - Agrega todas las funciones
-    -->
     
     <div class="game">
         <section class="hold_next_mobile">
@@ -25,8 +21,7 @@
                 <div class="canvas">
                     <canvas id="canvas-hold"></canvas>
                 </div>
-            </div>
-            <!-- Solo estará cuando cuando el mediaQuery sea menor de 740px - El container de abajo será invisible al estar -741px-->
+            </div>>
             <div class="canvas-container">
                 <span>NEXT</span>
                 <div class="canvas">
@@ -42,24 +37,41 @@
             <div class="canvas">
                 <canvas id="canvas-tetris"></canvas>
             </div>
+            <section class="control">
+                <div class="control_movimiento">
+                    <div class="controlador-nes">
+                        <div class="botones" id="buttonUp"></div>
+                        <div class="botones" id="buttonLeft"></div>
+                      </div>
+                      <div class="controlador-nes">
+                        <div class="botones" id="buttonDown"></div>
+                        <div class="botones" id="buttonRight"></div>
+                      </div>
+                </div>
+      
+                <div class="controlador-nes">
+                  <div class="botones" id="buttonDrop">
+                    <span class="botonesMobile">D</span>
+                  </div>
+                  <div class="botones" id="buttonHold">
+                    <span class="botonesMobile">H</span>
+                  </div>
+                </div>
+                
+                </section>
             
         </div>
-        <!--
-        Este debe de ser el conteiner visible solo para mayor de 741px - 
-        Despues cuando esté menos de 740px debe hacerse un div con ARRIBA, ABAJO, DERECHA, IZQUIERDA, BOTON "HOLD" Y "DROP"
-       
-        <div class="canvas-container">
-            <span>NEXT</span>
-            <div class="canvas">
-                <canvas id="canvas-next"></canvas>
-            </div>
-        </div>
-         -->
 
         <div class="menu" id="menu">
             <span>TETRIS</span>
-            <p><span class="instrucciones">Press "C"</span> to hold a tetromino</p>
+            <p>Playing on PC</p>
+            <p><span class="instrucciones">Press "C"</span> to hold the piece</p>
             <p>And then <span class="instrucciones">Press "C"</span> again to use it</p>
+            <p><span class="instrucciones">Press "SpaceBar"</span> to drop a piece</p>
+            <p><span class="instrucciones">Press "Arrow keys"</span> to move the piece</p>
+            <p><span class="instrucciones">Playing on Mobile</span></p>
+            <p><span class="instrucciones">"D"</span> to drop the piece</p>
+            <p><span class="instrucciones">"H"</span> to Hold the piece</p>
             <button id="btn-start">START</button>
         </div>
     </div>

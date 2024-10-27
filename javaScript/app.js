@@ -5,6 +5,14 @@ const score = document.getElementById("score");
 const menu = document.getElementById("menu");
 const btnMenu = document.getElementById("btn-start");
 
+const buttonUp = document.getElementById("buttonUp");
+const buttonLeft = document.getElementById("buttonLeft");
+const buttonDown = document.getElementById("buttonDown");
+const buttonRight = document.getElementById("buttonRight");
+
+const buttonDrop = document.getElementById("buttonDrop");
+const buttonHold = document.getElementById("buttonHold");
+
 const rows = 20;
 const cols = 10;
 const cellSize = 26;
