@@ -143,6 +143,7 @@ section.control{
     width: 25px;
     height: 25px;
     border-radius: 50px;
+    text-align: center;
   }
 
 div.control_movimiento{
@@ -177,3 +178,21 @@ div.controlador-nes div span.botonesMobile{
     font-size: 14px;
 }
 
+div.botones div.button_arrow{
+border: solid white;
+border-width: 0 3px 3px 0;
+display: inline-block;
+padding: 4px;
+}
+
+div.botones div.interface_mobile_button_up{
+    transform: rotate(90deg);
+}
+
+div.botones div.interface_mobile_button_down{
+    transform: rotate(90deg);
+}
+
+#interface_mobile_button_actions{
+    transform: rotate(0deg);
+}
